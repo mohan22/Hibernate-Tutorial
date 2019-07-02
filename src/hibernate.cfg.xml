@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+   
+      <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+      <property name="hibernate.connection.url">jdbc:oracle:thin:localhost:1521:orcl</property>
+      <property name="hibernate.connection.username">stark</property>
+      <property name="hibernate.connection.password">oracle</property>
+      <property name="hibernate.default_schema">stark</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+      
+      <!-- Echo all executed SQL to stdout -->
+      <property name="show_sql">true</property>
+      
+      <!-- Drop and re-create the database schema on startup -->
+      <property name="hbm2ddl.auto">create</property>
+      
+      <mapping class="org.hibernatetest.UserDetails"/>
+      
+      
+      
+   </session-factory>
+</hibernate-configuration>
