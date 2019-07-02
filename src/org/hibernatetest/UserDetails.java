@@ -7,12 +7,12 @@ import javax.persistence.Id;
 @Entity(name = "USER_DETAILS")
 public class UserDetails {
 
-	@Id
-	@Column(name = "USER_ID")
 	private int userId;
-	@Column(name = "USER_NAME")
+
 	private String userName;
 
+	@Id
+	@Column(name = "USER_ID")
 	public int getUserId() {
 		return userId;
 	}
@@ -21,8 +21,9 @@ public class UserDetails {
 		this.userId = userId;
 	}
 
+	@Column(name = "USER_NAME")
 	public String getUserName() {
-		return userName;
+		return userName + "from getter";
 	}
 
 	public void setUserName(String userName) {
