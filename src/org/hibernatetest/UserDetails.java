@@ -1,9 +1,11 @@
 package org.hibernatetest;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,16 +19,15 @@ public class UserDetails {
 	private int userId;
 	private String userName;
 
-	@OneToOne
-	@JoinColumn(name = "Vehicle_ID")
-	private Vehicle vehicle;
+	@OneToMany(mappedBy = "user")
+	private Collection<Vehicle> vehicles = new ArrayList<>();
 
-	public Vehicle getVehicle() {
-		return vehicle;
+	public Collection<Vehicle> getVehicles() {
+		return vehicles;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public void setVehicles(Collection<Vehicle> vehicle) {
+		this.vehicles = vehicle;
 	}
 
 	public int getUserId() {
