@@ -19,7 +19,8 @@
       
       <mapping class="org.hibernatetest.UserDetails"/>
       <mapping class="org.hibernatetest.Vehicle"/>
-      
+      <mapping class="org.hibernatetest.TwoWheeler"/>
+      <mapping class="org.hibernatetest.FourWheeler"/>
       
       
    </session-factory>

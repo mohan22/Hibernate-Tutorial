@@ -20,7 +20,7 @@ public class UserDetails {
 	private int userId;
 	private String userName;
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Collection<Vehicle> vehicles = new ArrayList<>();
 
 	public Collection<Vehicle> getVehicles() {
