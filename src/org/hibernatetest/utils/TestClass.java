@@ -22,6 +22,13 @@ public class TestClass {
 		session.beginTransaction();
 		session.save(user);
 		session.getTransaction().commit();
+		session.close();
+
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		user = session.get(UserDetails.class, 1);
+		System.out.println("User name retrieved : " + user.getUserName());
 
 	}
 
