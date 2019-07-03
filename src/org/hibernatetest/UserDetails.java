@@ -1,18 +1,54 @@
 package org.hibernatetest;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "USER_DETAILS")
+@Entity
+@Table(name = "USER_DETAILS")
 public class UserDetails {
 
-	private int userId;
-
-	private String userName;
-
 	@Id
-	@Column(name = "USER_ID")
+	private int userId;
+	private String userName;
+	private Date joinedDate;
+	private String Address;
+	private String description;
+
+	/*
+	 * @Lob
+	 * 
+	 * @Temporal(TemporalType.DATE)
+	 * 
+	 * etc
+	 */
+
+	public Date getJoinedDate() {
+		return joinedDate;
+	}
+
+	public void setJoinedDate(Date joinedDate) {
+		this.joinedDate = joinedDate;
+	}
+
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -21,7 +57,6 @@ public class UserDetails {
 		this.userId = userId;
 	}
 
-	@Column(name = "USER_NAME")
 	public String getUserName() {
 		return userName + "from getter";
 	}
