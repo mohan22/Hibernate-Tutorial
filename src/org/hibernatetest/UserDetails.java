@@ -2,6 +2,10 @@ package org.hibernatetest;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,6 +14,9 @@ import javax.persistence.Table;
 @Table(name = "USER_DETAILS")
 public class UserDetails {
 
+	/*
+	 * @EmbeddedId if ID has multiple fields
+	 */
 	@Id
 	private int userId;
 	private String userName;
@@ -17,7 +24,14 @@ public class UserDetails {
 	private String Address;
 	private String description;
 
-	private Address address;
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "street", column = @Column(name = "HOME_STREET_NAME")),
+			@AttributeOverride(name = "city", column = @Column(name = "HOME_CITY_NAME")),
+			@AttributeOverride(name = "state", column = @Column(name = "HOME_STATE_NAME")),
+			@AttributeOverride(name = "pincode", column = @Column(name = "HOME_PIN_CODE")) })
+	private Address homeAddress;
+
+	private Address officeAddress;
 
 	/*
 	 * @Lob
@@ -27,8 +41,24 @@ public class UserDetails {
 	 * etc
 	 */
 
+	public Address getHomeAddress() {
+		return homeAddress;
+	}
+
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+
+	public Address getOfficeAddress() {
+		return officeAddress;
+	}
+
+	public void setOfficeAddress(Address officeAddress) {
+		this.officeAddress = officeAddress;
+	}
+
 	public void setAddress(Address address) {
-		this.address = address;
+		this.officeAddress = address;
 	}
 
 	public Date getJoinedDate() {

@@ -24,8 +24,14 @@ public class TestClass {
 		addr.setPincode("521366");
 		addr.setState("telangana");
 
-		user.setAddress(addr);
+		user.setHomeAddress(addr);
 
+		Address ofcaddr = new Address();
+		ofcaddr.setCity("vij");
+		ofcaddr.setPincode("521366");
+		ofcaddr.setState("AP");
+
+		user.setOfficeAddress(ofcaddr);
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
