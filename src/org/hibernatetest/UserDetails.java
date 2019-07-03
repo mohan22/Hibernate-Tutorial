@@ -1,12 +1,8 @@
 package org.hibernatetest;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,19 +13,9 @@ public class UserDetails {
 	 * @EmbeddedId if ID has multiple fields
 	 */
 	@Id
+	@GeneratedValue
 	private int userId;
 	private String userName;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Collection<Vehicle> vehicles = new ArrayList<>();
-
-	public Collection<Vehicle> getVehicles() {
-		return vehicles;
-	}
-
-	public void setVehicles(Collection<Vehicle> vehicle) {
-		this.vehicles = vehicle;
-	}
 
 	public int getUserId() {
 		return userId;
