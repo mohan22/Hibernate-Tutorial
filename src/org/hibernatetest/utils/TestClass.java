@@ -18,11 +18,13 @@ public class TestClass {
 		// session.save(user);
 		// }
 
-		UserDetails user = session.get(UserDetails.class, 6);
-
+		UserDetails user = session.get(UserDetails.class, 4);
+		user.setUserName("Updated user name");
+		session.save(user);
+		// session.delete(user);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("User name :" + user.getUserName());
+		// System.out.println("User name :" + user.getUserName());
 
 	}
 
