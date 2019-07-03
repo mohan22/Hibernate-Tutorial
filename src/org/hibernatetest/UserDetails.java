@@ -1,14 +1,9 @@
 package org.hibernatetest;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,16 +17,16 @@ public class UserDetails {
 	private int userId;
 	private String userName;
 
-	@ElementCollection(fetch = FetchType.EAGER)
-	@JoinTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
-	private Collection<Address> addresses = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name = "Vehicle_ID")
+	private Vehicle vehicle;
 
-	public Collection<Address> getAddresses() {
-		return addresses;
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
 
-	public void setAddresses(Collection<Address> addresses) {
-		this.addresses = addresses;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public int getUserId() {

@@ -18,6 +18,7 @@
       <property name="hbm2ddl.auto">create</property>
       
       <mapping class="org.hibernatetest.UserDetails"/>
+      <mapping class="org.hibernatetest.Vehicle"/>
       
       
       
