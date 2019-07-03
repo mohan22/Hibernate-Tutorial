@@ -1,11 +1,9 @@
 package org.hibernatetest;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,69 +18,16 @@ public class UserDetails {
 	@Id
 	private int userId;
 	private String userName;
-	private Date joinedDate;
-	private String Address;
-	private String description;
 
-	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "street", column = @Column(name = "HOME_STREET_NAME")),
-			@AttributeOverride(name = "city", column = @Column(name = "HOME_CITY_NAME")),
-			@AttributeOverride(name = "state", column = @Column(name = "HOME_STATE_NAME")),
-			@AttributeOverride(name = "pincode", column = @Column(name = "HOME_PIN_CODE")) })
-	private Address homeAddress;
+	@ElementCollection
+	private Set<Address> addresses = new HashSet<>();
 
-	private Address officeAddress;
-
-	/*
-	 * @Lob
-	 * 
-	 * @Temporal(TemporalType.DATE)
-	 * 
-	 * etc
-	 */
-
-	public Address getHomeAddress() {
-		return homeAddress;
+	public Set<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setHomeAddress(Address homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-
-	public Address getOfficeAddress() {
-		return officeAddress;
-	}
-
-	public void setOfficeAddress(Address officeAddress) {
-		this.officeAddress = officeAddress;
-	}
-
-	public void setAddress(Address address) {
-		this.officeAddress = address;
-	}
-
-	public Date getJoinedDate() {
-		return joinedDate;
-	}
-
-	public void setJoinedDate(Date joinedDate) {
-		this.joinedDate = joinedDate;
-	}
-
-	public String getAddress() {
-		return Address;
-	}
-
-	public void setAddress(String address) {
-		Address = address;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	public int getUserId() {
