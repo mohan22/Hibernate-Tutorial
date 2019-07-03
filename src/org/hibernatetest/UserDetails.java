@@ -17,6 +17,8 @@ public class UserDetails {
 	private String Address;
 	private String description;
 
+	private Address address;
+
 	/*
 	 * @Lob
 	 * 
@@ -24,6 +26,10 @@ public class UserDetails {
 	 * 
 	 * etc
 	 */
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public Date getJoinedDate() {
 		return joinedDate;
