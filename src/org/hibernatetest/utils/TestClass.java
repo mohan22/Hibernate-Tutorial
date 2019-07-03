@@ -9,21 +9,18 @@ public class TestClass {
 
 	public static void main(String[] args) {
 
+		UserDetails user = new UserDetails();
+		user.setUserName("u22");
+		user.setUserName("Updated user name"); // user - Transient object
+
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		// for (int i = 1; i < 10; i++) {
-		// UserDetails user = new UserDetails();
-		// user.setUserName("user " + i);
-		// session.save(user);
-		// }
 
-		UserDetails user = session.get(UserDetails.class, 4);
-		user.setUserName("Updated user name");
-		session.save(user);
-		// session.delete(user);
+		session.save(user); // user - persisted object
+
 		session.getTransaction().commit();
-		session.close();
+		session.close(); // user- Detached object
 		// System.out.println("User name :" + user.getUserName());
 
 	}
