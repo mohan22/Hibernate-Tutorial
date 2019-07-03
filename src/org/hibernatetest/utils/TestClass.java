@@ -34,6 +34,12 @@ public class TestClass {
 		session.getTransaction().commit();
 		session.close();
 
+		user = null;
+		session = sessionFactory.openSession();
+		user = session.get(UserDetails.class, 1);
+		session.close();
+		System.out.println(user.getAddresses().size());
+
 	}
 
 }

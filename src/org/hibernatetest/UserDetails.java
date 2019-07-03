@@ -1,11 +1,13 @@
 package org.hibernatetest;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 @Entity
@@ -20,13 +22,14 @@ public class UserDetails {
 	private String userName;
 
 	@ElementCollection
-	private Set<Address> addresses = new HashSet<>();
+	@JoinTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
+	private Collection<Address> addresses = new ArrayList<>();
 
-	public Set<Address> getAddresses() {
+	public Collection<Address> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(Set<Address> addresses) {
+	public void setAddresses(Collection<Address> addresses) {
 		this.addresses = addresses;
 	}
 
