@@ -17,17 +17,19 @@ public class TestClass {
 		Vehicle v1 = new Vehicle();
 		v1.setVehicleName("car");
 		user.getVehicles().add(v1);
+
 		Vehicle v2 = new Vehicle();
 		v2.setVehicleName("Jeep");
 		user.getVehicles().add(v2);
-		v2.setUser(user);
-		v1.setUser(user);
+
+		v2.getUserList().add(user);
+		v1.getUserList().add(user);
+
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(user);
-		session.save(v1);
-		session.save(v2);
+		session.persist(user);
+
 		session.getTransaction().commit();
 		session.close();
 

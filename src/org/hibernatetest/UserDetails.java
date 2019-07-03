@@ -3,9 +3,10 @@ package org.hibernatetest;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +20,7 @@ public class UserDetails {
 	private int userId;
 	private String userName;
 
-	@OneToMany(mappedBy = "user")
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private Collection<Vehicle> vehicles = new ArrayList<>();
 
 	public Collection<Vehicle> getVehicles() {

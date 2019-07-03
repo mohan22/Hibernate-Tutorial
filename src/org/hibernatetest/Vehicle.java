@@ -1,10 +1,12 @@
 package org.hibernatetest;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Vehicle {
@@ -13,16 +15,15 @@ public class Vehicle {
 	@GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToOne
-	@JoinColumn(name = "USER_ID")
-	private UserDetails user;
+	@ManyToMany(mappedBy = "vehicles")
+	private Collection<UserDetails> userList = new ArrayList<>();
 
-	public UserDetails getUser() {
-		return user;
+	public Collection<UserDetails> getUserList() {
+		return userList;
 	}
 
-	public void setUser(UserDetails user) {
-		this.user = user;
+	public void setUserList(Collection<UserDetails> userList) {
+		this.userList = userList;
 	}
 
 	public int getVehicleId() {
