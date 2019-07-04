@@ -17,7 +17,11 @@ public class TestClass {
 		UserDetails user = session.get(UserDetails.class, 1);
 
 		user.setUserName("updated user23");
+		session.getTransaction().commit();
+		session.close();
 
+		session = sessionFactory.openSession();
+		session.beginTransaction();
 		UserDetails user2 = session.get(UserDetails.class, 1);
 
 		System.out.print(user2.getUserName());
