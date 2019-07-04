@@ -3,13 +3,11 @@ package org.hibernatetest;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @NamedQuery(name = "UserDetails.byId", query = "from UserDetails where userId=:userId")
-@NamedNativeQuery(name = "userDetails.byName", query = "select * from USER_DETAILS where userName=:userName", resultClass = UserDetails.class)
 @Table(name = "USER_DETAILS")
 public class UserDetails {
 
