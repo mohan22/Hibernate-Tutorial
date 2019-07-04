@@ -19,9 +19,8 @@ public class TestClass {
 
 		int minUserId = 5;
 		String userName = "user 8";
-		Query query = session.createQuery("from UserDetails where userId>:userId and userName=:userName");
-		query.setInteger("userId", minUserId);
-		query.setString("userName", userName);
+		Query query = session.getNamedQuery("UserDetails.byId");
+		query.setInteger("userId", 2);
 		List<UserDetails> users = query.list();
 		// session.getTransaction().commit();
 		session.close();
