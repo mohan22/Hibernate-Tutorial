@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Projections;
 import org.hibernatetest.UserDetails;
 
 public class TestClass {
@@ -18,14 +18,13 @@ public class TestClass {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.or(Restrictions.between("userId", 1, 3), Restrictions.eqOrIsNull("userId", 4)));
+		Criteria criteria = session.createCriteria(UserDetails.class).setProjection(Projections.property("userId")); // projectsions
 
-		List<UserDetails> users = criteria.list();
+		List<String> userIds = criteria.list();
 		// session.getTransaction().commit();
 		session.close();
-		for (UserDetails u : users)
-			System.out.println(u.getUserName());
+		for (String u : userIds)
+			System.out.println(u);
 
 	}
 
