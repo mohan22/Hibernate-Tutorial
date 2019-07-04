@@ -6,7 +6,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernatetest.UserDetails;
 
 public class TestClass {
 
@@ -17,14 +16,14 @@ public class TestClass {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		Query query = session.createQuery("from UserDetails ");
+		Query query = session.createQuery("select userName from UserDetails ");
 		query.setFirstResult(5);
-		query.setMaxResults(3);
-		List<UserDetails> users = query.list();
+		query.setMaxResults(2);
+		List<String> userNames = query.list();
 		// session.getTransaction().commit();
 		session.close();
-		for (UserDetails u : users)
-			System.out.println(u.getUserName());
+		for (String u : userNames)
+			System.out.println(u);
 
 	}
 
