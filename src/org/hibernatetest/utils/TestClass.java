@@ -19,7 +19,7 @@ public class TestClass {
 		session.beginTransaction();
 
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.eq("userName", "user 8"));
+		criteria.add(Restrictions.or(Restrictions.between("userId", 1, 3), Restrictions.eqOrIsNull("userId", 4)));
 
 		List<UserDetails> users = criteria.list();
 		// session.getTransaction().commit();
