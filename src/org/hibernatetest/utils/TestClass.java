@@ -1,9 +1,11 @@
 package org.hibernatetest.utils;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernatetest.UserDetails;
 
 public class TestClass {
 
@@ -14,17 +16,18 @@ public class TestClass {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		UserDetails user = session.get(UserDetails.class, 1);
-
-		user.setUserName("updated user23");
-		session.getTransaction().commit();
+		Query query = session.createQuery("from UserDetails user where user.userId=1");
+		query.setCacheable(true);
+		List users = query.list();
 		session.close();
-
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		UserDetails user2 = session.get(UserDetails.class, 1);
 
-		System.out.print(user2.getUserName());
+		query = session.createQuery("from UserDetails user where user.userId=1");
+		query.setCacheable(true);
+		users = query.list();
+
+		// System.out.print(user2.getUserName());
 		// session.getTransaction().commit();
 		session.close();
 
